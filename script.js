@@ -1,15 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const track = document.querySelector('.carousel-track');
     const slides = [
-        '01.jpg',
-        '02.jpg',
-        '03.jpg',
-        '04.jpg',
-        '05.jpg',
-        '06.jpg',
-        '07.jpg',
-        '08.jpg',
-        '09.jpg',
         '10.jpg'
     ];
 
@@ -129,5 +120,50 @@ document.addEventListener('DOMContentLoaded', () => {
             track.style.transform = `translateX(-${currentIndex * 100}%)`;
             updateProgress();
         }
+    });
+});
+
+// Инициализация AOS (Animate On Scroll)
+AOS.init({
+    duration: 1000,
+    once: true,
+    offset: 100
+});
+
+// Кнопка прокрутки наверх
+const scrollToTopBtn = document.getElementById('scrollToTop');
+
+window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+        scrollToTopBtn.style.display = 'flex';
+    } else {
+        scrollToTopBtn.style.display = 'none';
+    }
+});
+
+scrollToTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+
+// Плавная прокрутка для всех якорных ссылок
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+
+// Обработка FAQ аккордеона
+document.querySelectorAll('.faq-item').forEach(item => {
+    item.addEventListener('click', () => {
+        item.classList.toggle('active');
     });
 });

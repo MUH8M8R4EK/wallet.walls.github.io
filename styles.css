@@ -4,119 +4,172 @@
     box-sizing: border-box;
 }
 
-body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #e3f0f3;
+:root {
+    --primary-color: #cd85a8;
+    --secondary-color: #9cbace;
+    --text-color: #4a4747;
+    --light-bg: #e3f0f3;
+    --white: #ffffff;
+    --transition: all 0.3s ease;
 }
 
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--light-bg);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Hero Section */
 .hero-section {
     position: relative;
-    height: 1678px;
+    height: 100vh;
+    min-height: 600px;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .clouds-hearts {
     width: 100%;
-    height: 853px;
+    height: 100%;
     object-fit: cover;
     position: absolute;
     top: 0;
+    left: 0;
 }
 
 .logo {
-    width: 398px;
-    height: 398px;
-    position: absolute;
-    top: 157px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1;
+    width: 300px;
+    height: auto;
+    position: relative;
+    z-index: 2;
+    animation: float 6s ease-in-out infinite;
 }
 
 .studio-text {
     position: absolute;
-    top: 494px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: white;
+    bottom: 50px;
+    color: var(--white);
     font-size: 24px;
-    letter-spacing: 31px;
+    letter-spacing: 10px;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.45);
+    z-index: 2;
 }
 
-.princeses {
-    position: absolute;
-    width: 542px;
-    height: 815px;
-    top: 730px;
-    right: 66px;
-    object-fit: cover;
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
 }
 
-.painting-bg {
-    position: absolute;
-    width: 723px;
-    height: 765px;
-    top: 767px;
-    left: 65px;
-}
-
+/* About Section */
 .about-section {
-    position: absolute;
-    top: 700px;
-    width: 100%;
+    padding: 100px 0;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--white);
     text-align: center;
 }
 
 .about-section h2 {
-    font-family: 'Roboto Slab', serif;
-    font-size: 96px;
-    color: rgba(255, 255, 255, 0.47);
+    font-size: 48px;
+    margin-bottom: 40px;
+    font-weight: 700;
 }
 
 .about-content {
-    margin-top: 50px;
-    color: #e3f1f4;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.about-content h3 {
+    font-size: 36px;
+    margin-bottom: 20px;
 }
 
 .about-content .studio {
-    font-size: 56px;
-    margin: 20px 0;
+    font-size: 24px;
+    margin-bottom: 30px;
+    opacity: 0.9;
 }
 
 .about-content .description {
-    max-width: 800px;
-    margin: 0 auto;
-    line-height: 1.6;
+    font-size: 18px;
+    line-height: 1.8;
 }
 
+/* Services Section */
 .services-section {
     padding: 100px 0;
-    text-align: center;
-    color: #a0bfd4;
-    font-size: 32px;
-    line-height: 1.6;
+    background-color: var(--white);
 }
 
-.portfolio-section {
-    background-color: #9cbace;
-    padding: 50px 0;
+.services-section h2 {
     text-align: center;
+    font-size: 48px;
+    margin-bottom: 60px;
+    color: var(--text-color);
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.service-card {
+    background: var(--white);
+    padding: 40px 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.service-icon {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.service-card h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: var(--text-color);
+}
+
+.service-card p {
+    color: #666;
+}
+
+/* Portfolio Section */
+.portfolio-section {
+    padding: 100px 0;
+    background-color: var(--secondary-color);
 }
 
 .portfolio-section h2 {
-    font-family: 'Roboto Slab', serif;
-    font-size: 96px;
-    color: rgba(255, 255, 255, 0.47);
-    margin-bottom: 50px;
+    text-align: center;
+    font-size: 48px;
+    margin-bottom: 60px;
+    color: var(--white);
 }
 
 .carousel-container {
     position: relative;
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto;
-    height: 800px;
-    padding: 0 20px;
+    height: 600px;
 }
 
 .carousel {
@@ -138,18 +191,6 @@ body {
     height: 100%;
     background-size: cover;
     background-position: center;
-    position: relative;
-}
-
-.carousel-slide::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.4));
-    pointer-events: none;
 }
 
 .carousel-button {
@@ -158,89 +199,229 @@ body {
     transform: translateY(-50%);
     background: rgba(255, 255, 255, 0.9);
     border: none;
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     cursor: pointer;
-    font-size: 24px;
+    font-size: 20px;
     z-index: 2;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    transition: var(--transition);
 }
 
 .carousel-button:hover {
-    background: rgba(255, 255, 255, 1);
+    background: var(--white);
     transform: translateY(-50%) scale(1.1);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
 }
 
-.prev { left: 30px; }
-.next { right: 30px; }
+.prev { left: -25px; }
+.next { right: -25px; }
 
-.carousel-progress {
-    margin-top: 30px;
+/* Testimonials Section */
+.testimonials-section {
+    padding: 100px 0;
+    background-color: var(--light-bg);
+}
+
+.testimonials-section h2 {
+    text-align: center;
+    font-size: 48px;
+    margin-bottom: 60px;
+    color: var(--text-color);
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.testimonial-card {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-content p {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+.testimonial-author {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.testimonial-author .name {
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.testimonial-author .project {
+    color: #666;
+    font-size: 14px;
+}
+
+/* Contact Section */
+.contact-section {
+    padding: 100px 0;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--white);
     text-align: center;
 }
 
-.progress-bar {
-    width: 300px;
-    height: 4px;
-    background-color: rgba(227, 241, 244, 0.3);
-    border-radius: 2px;
-    margin: 0 auto;
-    position: relative;
-    overflow: hidden;
+.contact-section h2 {
+    font-size: 48px;
+    margin-bottom: 20px;
 }
 
-.progress-indicator {
-    width: 33.33%;
-    height: 100%;
-    background-color: #e3f1f4;
-    border-radius: 2px;
-    position: absolute;
-    left: 0;
-    transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+.contact-subtitle {
+    font-size: 20px;
+    margin-bottom: 40px;
+    opacity: 0.9;
 }
 
-.progress-text {
-    margin-top: 15px;
-    color: white;
-    font-family: 'Roboto Slab', serif;
+.contact-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 60px;
+}
+
+.consultation-btn {
+    background: transparent;
+    border: 2px solid var(--white);
+    color: var(--white);
+    padding: 15px 30px;
     font-size: 18px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.consultation-btn:hover {
+    background: var(--white);
+    color: var(--primary-color);
+}
+
+.signup-btn {
+    background: var(--white);
+    color: var(--primary-color);
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.signup-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.contact-info {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.contact-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.contact-label {
+    font-size: 14px;
     opacity: 0.8;
 }
 
+.contact-item a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 18px;
+    transition: var(--transition);
+}
+
+.contact-item a:hover {
+    opacity: 0.8;
+}
+
+/* Scroll to Top Button */
+.scroll-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: var(--primary-color);
+    border: none;
+    border-radius: 50%;
+    color: var(--white);
+    font-size: 24px;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    z-index: 1000;
+}
+
+.scroll-to-top:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
 @media (max-width: 1200px) {
+    .container {
+        padding: 0 40px;
+    }
+    
     .carousel-container {
-        height: 600px;
+        height: 500px;
     }
 }
 
 @media (max-width: 768px) {
-    .carousel-container {
-        height: 400px;
+    .hero-section {
+        height: 80vh;
     }
     
-    .carousel-button {
-        width: 50px;
-        height: 50px;
-        font-size: 20px;
-    }
-    
-    .prev { left: 15px; }
-    .next { right: 15px; }
-    
-    .progress-bar {
+    .logo {
         width: 200px;
     }
-}
-
-@media (max-width: 480px) {
+    
+    .studio-text {
+        font-size: 18px;
+        letter-spacing: 5px;
+    }
+    
+    .about-section h2,
+    .services-section h2,
+    .portfolio-section h2,
+    .testimonials-section h2,
+    .contact-section h2 {
+        font-size: 36px;
+    }
+    
+    .contact-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .contact-info {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    
     .carousel-container {
-        height: 300px;
+        height: 400px;
     }
     
     .carousel-button {
@@ -249,47 +430,46 @@ body {
         font-size: 16px;
     }
     
-    .progress-bar {
+    .prev { left: -20px; }
+    .next { right: -20px; }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 20px;
+    }
+    
+    .hero-section {
+        height: 70vh;
+    }
+    
+    .logo {
         width: 150px;
     }
-}
-
-.contact-section {
-    padding: 100px 0;
-    text-align: center;
-}
-
-.contact-section h2 {
-    font-family: 'Roboto Slab', serif;
-    font-size: 32px;
-    color: #4a4747;
-    margin-bottom: 30px;
-}
-
-.consultation-btn {
-    background: none;
-    border: none;
-    color: #677585;
-    font-size: 20px;
-    margin-bottom: 20px;
-    cursor: pointer;
-}
-
-.signup-btn {
-    background-color: #cd85a8;
-    color: #e4c1e1;
-    border: none;
-    padding: 20px 40px;
-    font-size: 24px;
-    border-radius: 15px;
-    cursor: pointer;
-    box-shadow: 0px 3px 9px rgba(0, 0, 0, 0.4);
-}
-
-.contact-info {
-    margin-top: 50px;
-    background-color: #e9d7ef;
-    padding: 20px;
-    color: #4a4747;
-    line-height: 1.6;
+    
+    .studio-text {
+        font-size: 16px;
+        letter-spacing: 3px;
+    }
+    
+    .about-section h2,
+    .services-section h2,
+    .portfolio-section h2,
+    .testimonials-section h2,
+    .contact-section h2 {
+        font-size: 28px;
+    }
+    
+    .carousel-container {
+        height: 300px;
+    }
+    
+    .carousel-button {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+    }
+    
+    .prev { left: -17px; }
+    .next { right: -17px; }
 }

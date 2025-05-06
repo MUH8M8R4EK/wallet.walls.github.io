@@ -1,70 +1,339 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Velvet Walls</title>
+    <meta name="description" content="Velvet Walls - студия дизайна, создающая авторские росписи и декоративные стены для домов, квартир и коммерческих пространств">
+    <meta name="keywords" content="роспись стен, дизайн интерьера, декоративные стены, художественная роспись">
+    <title>Velvet Walls - Студия дизайна</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:500,400|Roboto+Slab:400,600" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <style>
+        .about-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #cd85a8, #9cbace);
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .about-section h2 {
+            font-size: 48px;
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .about-text {
+            text-align: left;
+        }
+
+        .about-image {
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .princeses-image {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            transform: rotate(-3deg);
+            transition: all 0.3s ease;
+        }
+
+        .princeses-image:hover {
+            transform: rotate(0deg) scale(1.02);
+        }
+
+        .about-content h3 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .about-content .studio {
+            font-size: 24px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .about-content .description {
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 768px) {
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .about-text {
+                text-align: center;
+            }
+
+            .princeses-image {
+                max-width: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .princeses-image {
+                max-width: 250px;
+            }
+        }
+
+        .carousel {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 400px;
+            background: #f6f6f6;
+            border-radius: 24px;
+            overflow: hidden;
+            position: relative;
+            min-width: 320px;
+        }
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(.77,0,.18,1);
+            width: 100%;
+            height: 100%;
+        }
+        .carousel-track img {
+            min-width: 100%;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+            background: #eaeaea;
+            margin: 0 10px;
+            display: block;
+            transition: box-shadow 0.3s, transform 0.3s;
+        }
+        .carousel-button {
+            background: rgba(255,255,255,0.7);
+            border: none;
+            font-size: 2.5rem;
+            color: #888;
+            cursor: pointer;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 2;
+            transition: background 0.2s;
+        }
+        .carousel-button.prev { left: 10px; }
+        .carousel-button.next { right: 10px; }
+        .carousel-button:hover { background: #fff; color: #333; }
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            margin-top: 16px;
+        }
+        .carousel-indicators .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #bbb;
+            margin: 0 4px;
+            transition: background 0.3s;
+        }
+        .carousel-indicators .dot.active {
+            background: #cd85a8;
+        }
+        @media (max-width: 768px) {
+            .carousel { height: 250px; }
+        }
+    </style>
 </head>
 <body>
-    <div class="hero-section">
+    <header class="hero-section">
         <img src="Clouds_hearts.png" alt="Clouds hearts" class="clouds-hearts">
         <img src="Walwet_walls_logo.png" alt="Walwet walls logo" class="logo">
         <div class="studio-text">СТУДИЯ ДИЗАЙНА</div>
-        <div class="about-section">
-            <h2>О НАС</h2>
-            <div class="about-content">
-                <p>VELVET WALLS</p>
-                <p class="studio">СТУДИЯ ДИЗАЙНА</p>
-                <p class="description">
-                    СОЗДАЁМ АВТОРСКИЕ РОСПИСИ, ПАННО ДЕКОРАТИВНЫЕ СТЕНЫ ДЛЯ ДОМОВ, 
-                    КВАРТИР И КОММЕРЧЕСКИХ ПРОСТРАНСТВ С 2018 ГОДА. ИНДИВИДУАЛЬНЫЕ ЭСКИЗЫ, 
-                    ТОЧНЫЕ СРОКИ, РАЗНООБРАЗИЕ СТИЛЕВЫХ НАПРАВЛЕНИЙ. 
-                    С НАМИ ВАШИ СТЕНЫ РАССКАЖУТ ИСТОРИЮ!
-                </p>
+    </header>
+
+    <main>
+        <section class="about-section" data-aos="fade-up">
+            <div class="container">
+                <h2>О НАС</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>VELVET WALLS</h3>
+                        <p class="studio">СТУДИЯ ДИЗАЙНА</p>
+                        <p class="description">
+                            СОЗДАЁМ АВТОРСКИЕ РОСПИСИ, ПАННО ДЕКОРАТИВНЫЕ СТЕНЫ ДЛЯ ДОМОВ, 
+                            КВАРТИР И КОММЕРЧЕСКИХ ПРОСТРАНСТВ С 2018 ГОДА. ИНДИВИДУАЛЬНЫЕ ЭСКИЗЫ, 
+                            ТОЧНЫЕ СРОКИ, РАЗНООБРАЗИЕ СТИЛЕВЫХ НАПРАВЛЕНИЙ. 
+                            С НАМИ ВАШИ СТЕНЫ РАССКАЖУТ ИСТОРИЮ!
+                        </p>
+                    </div>
+                    <div class="about-image">
+                        <img src="Princeses.png" alt="Princeses" class="princeses-image">
+                    </div>
+                </div>
             </div>
-            <img src="Princeses.png" alt="Princeses" class="princeses">
-            <img src="Painting.png" alt="Painting BG" class="painting-bg">
-        </div>
-    </div>
+        </section>
 
-    <div class="services-section">
-        <p>
-            ХУДОЖЕСТВЕННЫЕ РОСПИСИ ИНТЕРЬЕРОВ И ФАСАДОВ<br>
-            НАНЕСЕНИЕ КОРПОРАТИВНОЙ СИМВОЛИКИ<br>
-            РОСПИСЬ ПО ВАШИМ ИЛИ РАЗРАБОТАННЫМ НАМИ ЭСКИЗАМ
-        </p>
-    </div>
-
-    <div class="portfolio-section">
-        <h2>РАБОТЫ</h2>
-        <div class="carousel-container">
-            <button class="carousel-button prev">&lt;</button>
-            <div class="carousel">
-                <div class="carousel-track"></div>
+        <section class="services-section" data-aos="fade-up">
+            <div class="container">
+                <h2>НАШИ УСЛУГИ</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">🎨</div>
+                        <h3>ХУДОЖЕСТВЕННЫЕ РОСПИСИ</h3>
+                        <p>Интерьеров и фасадов</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🏢</div>
+                        <h3>КОРПОРАТИВНАЯ СИМВОЛИКА</h3>
+                        <p>Нанение на стены и фасады</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">✏️</div>
+                        <h3>ИНДИВИДУАЛЬНЫЕ ЭСКИЗЫ</h3>
+                        <p>По вашим идеям или нашим</p>
+                    </div>
+                </div>
             </div>
-            <button class="carousel-button next">&gt;</button>
-        </div>
-        <div class="carousel-progress">
-            <div class="progress-bar">
-                <div class="progress-indicator"></div>
+        </section>
+
+        <section class="portfolio-section" data-aos="fade-up">
+            <div class="container">
+                <h2>НАШИ РАБОТЫ</h2>
+                <div class="carousel-container">
+                    <button class="carousel-button prev">&lt;</button>
+                    <div class="carousel">
+                        <div class="carousel-track">
+                            <img src="img/02.JPG" alt="Работа 1">
+                            <img src="img/01.JPG" alt="Работа 2 вертикальная">
+                            <img src="img/04.JPG" alt="Работа 3">
+                            <img src="img/03.JPG" alt="Работа 4 вертикальная">
+                            <img src="img/05.JPG" alt="Работа 5 вертикальная">
+                            <img src="img/06.JPG" alt="Работа 6">
+                            <img src="img/07.JPG" alt="Работа 7 вертикальная">
+                            <img src="img/08.JPG" alt="Работа 8 вертикальная">
+                            <img src="img/09.JPG" alt="Работа 9 ">
+                            <img src="img/10.JPG" alt="Работа 10 вертикальная">
+                        </div>
+                    </div>
+                    <button class="carousel-button next">&gt;</button>
+                </div>
+                <div class="carousel-indicators"></div>
+                <div class="carousel-progress">
+                    <div class="progress-bar">
+                        <div class="progress-indicator"></div>
+                    </div>
+                    <div class="progress-text">1/10</div>
+                </div>
             </div>
-            <div class="progress-text">1/10</div>
-        </div>
-    </div>
+        </section>
 
-    <div class="contact-section">
-        <h2>НАПОЛНИТЬ ПРОСТРАНСТВО ЯРКИМИ КРАСКАМИ?</h2>
-        <button class="consultation-btn">БЕСПЛАТНАЯ КОНСУЛЬТАЦИЯ</button>
-        <button class="signup-btn" onclick="window.location.href='https://docs.google.com/forms/d/e/1FAIpQLSdMMzGpdyR-0QNJElvsw0Hfc1GLShFjvTD5Xg2Wnp5Va_r93w/viewform?usp=header'">ЗАПИСАТЬСЯ</button>
-        <div class="contact-info">
-            <p>КОНТАКТЫ</p>
-            <p>VELVET.WALLS.SPB@GMAIL.COM</p>
-            <p>+7 (931) 387 93 41</p>
-        </div>
-    </div>
+        <section class="testimonials-section" data-aos="fade-up">
+            <div class="container">
+                <h2>ОТЗЫВЫ КЛИЕНТОВ</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"Прекрасная работа! Профессиональный подход и внимание к деталям."</p>
+                            <div class="testimonial-author">
+                                <span class="name">Анна К.</span>
+                                <span class="project">Роспись детской комнаты</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"Невероятно талантливые художники! Превратили нашу гостиную в произведение искусства."</p>
+                            <div class="testimonial-author">
+                                <span class="name">Михаил П.</span>
+                                <span class="project">Роспись гостиной</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <script src="script.js"></script>
+        <section class="contact-section" data-aos="fade-up">
+            <div class="container">
+                <h2>ГОТОВЫ НАЧАТЬ ПРОЕКТ?</h2>
+                <div class="contact-buttons">
+                    <button class="signup-btn" onclick="window.location.href='https://docs.google.com/forms/d/e/1FAIpQLSdMMzGpdyR-0QNJElvsw0Hfc1GLShFjvTD5Xg2Wnp5Va_r93w/viewform?usp=header'">ЗАПИСАТЬСЯ</button>
+                </div>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span class="contact-label">EMAIL</span>
+                        <a href="mailto:VELVET.WALLS.SPB@GMAIL.COM">VELVET.WALLS.SPB@GMAIL.COM</a>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-label">ТЕЛЕФОН</span>
+                        <a href="tel:+79313879341">+7 (931) 387 93 41</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <button id="scrollToTop" class="scroll-to-top">↑</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+    const track = document.querySelector('.carousel-track');
+    const slides = Array.from(track.children);
+    const prevBtn = document.querySelector('.carousel-button.prev');
+    const nextBtn = document.querySelector('.carousel-button.next');
+    const indicators = document.querySelector('.carousel-indicators');
+    let currentIndex = 0;
+
+    // Создание индикаторов
+    slides.forEach((_, idx) => {
+        const dot = document.createElement('div');
+        dot.className = 'dot' + (idx === 0 ? ' active' : '');
+        dot.addEventListener('click', () => goToSlide(idx));
+        indicators.appendChild(dot);
+    });
+
+    function updateCarousel() {
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        indicators.querySelectorAll('.dot').forEach((dot, idx) => {
+            dot.classList.toggle('active', idx === currentIndex);
+        });
+        // Обновление счетчика (если нужно)
+        const progressText = document.querySelector('.progress-text');
+        if(progressText) progressText.textContent = `${currentIndex+1}/${slides.length}`;
+    }
+    function goToSlide(idx) {
+        currentIndex = idx;
+        updateCarousel();
+    }
+    prevBtn.onclick = () => {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        updateCarousel();
+    };
+    nextBtn.onclick = () => {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateCarousel();
+    };
+    updateCarousel();
+    </script>
 </body>
 </html>
