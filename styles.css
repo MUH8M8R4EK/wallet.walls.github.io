@@ -1,0 +1,295 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #e3f0f3;
+}
+
+.hero-section {
+    position: relative;
+    height: 1678px;
+    overflow: hidden;
+}
+
+.clouds-hearts {
+    width: 100%;
+    height: 853px;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+}
+
+.logo {
+    width: 398px;
+    height: 398px;
+    position: absolute;
+    top: 157px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+.studio-text {
+    position: absolute;
+    top: 494px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 24px;
+    letter-spacing: 31px;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.45);
+}
+
+.princeses {
+    position: absolute;
+    width: 542px;
+    height: 815px;
+    top: 730px;
+    right: 66px;
+    object-fit: cover;
+}
+
+.painting-bg {
+    position: absolute;
+    width: 723px;
+    height: 765px;
+    top: 767px;
+    left: 65px;
+}
+
+.about-section {
+    position: absolute;
+    top: 700px;
+    width: 100%;
+    text-align: center;
+}
+
+.about-section h2 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 96px;
+    color: rgba(255, 255, 255, 0.47);
+}
+
+.about-content {
+    margin-top: 50px;
+    color: #e3f1f4;
+}
+
+.about-content .studio {
+    font-size: 56px;
+    margin: 20px 0;
+}
+
+.about-content .description {
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.services-section {
+    padding: 100px 0;
+    text-align: center;
+    color: #a0bfd4;
+    font-size: 32px;
+    line-height: 1.6;
+}
+
+.portfolio-section {
+    background-color: #9cbace;
+    padding: 50px 0;
+    text-align: center;
+}
+
+.portfolio-section h2 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 96px;
+    color: rgba(255, 255, 255, 0.47);
+    margin-bottom: 50px;
+}
+
+.carousel-container {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 800px;
+    padding: 0 20px;
+}
+
+.carousel {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    height: 100%;
+}
+
+.carousel-slide {
+    min-width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.carousel-slide::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.4));
+    pointer-events: none;
+}
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 24px;
+    z-index: 2;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-button:hover {
+    background: rgba(255, 255, 255, 1);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.prev { left: 30px; }
+.next { right: 30px; }
+
+.carousel-progress {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.progress-bar {
+    width: 300px;
+    height: 4px;
+    background-color: rgba(227, 241, 244, 0.3);
+    border-radius: 2px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-indicator {
+    width: 33.33%;
+    height: 100%;
+    background-color: #e3f1f4;
+    border-radius: 2px;
+    position: absolute;
+    left: 0;
+    transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.progress-text {
+    margin-top: 15px;
+    color: white;
+    font-family: 'Roboto Slab', serif;
+    font-size: 18px;
+    opacity: 0.8;
+}
+
+@media (max-width: 1200px) {
+    .carousel-container {
+        height: 600px;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-container {
+        height: 400px;
+    }
+    
+    .carousel-button {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+    
+    .prev { left: 15px; }
+    .next { right: 15px; }
+    
+    .progress-bar {
+        width: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-container {
+        height: 300px;
+    }
+    
+    .carousel-button {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+    
+    .progress-bar {
+        width: 150px;
+    }
+}
+
+.contact-section {
+    padding: 100px 0;
+    text-align: center;
+}
+
+.contact-section h2 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 32px;
+    color: #4a4747;
+    margin-bottom: 30px;
+}
+
+.consultation-btn {
+    background: none;
+    border: none;
+    color: #677585;
+    font-size: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.signup-btn {
+    background-color: #cd85a8;
+    color: #e4c1e1;
+    border: none;
+    padding: 20px 40px;
+    font-size: 24px;
+    border-radius: 15px;
+    cursor: pointer;
+    box-shadow: 0px 3px 9px rgba(0, 0, 0, 0.4);
+}
+
+.contact-info {
+    margin-top: 50px;
+    background-color: #e9d7ef;
+    padding: 20px;
+    color: #4a4747;
+    line-height: 1.6;
+}
