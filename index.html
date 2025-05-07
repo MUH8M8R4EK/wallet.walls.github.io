@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Velvet Walls - студия дизайна, создающая авторские росписи и декоративные стены для домов, квартир и коммерческих пространств">
     <meta name="keywords" content="роспись стен, дизайн интерьера, декоративные стены, художественная роспись">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Velvet Walls">
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
     <title>Velvet Walls - Студия дизайна</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <style>
@@ -168,8 +171,8 @@
 </head>
 <body>
     <header class="hero-section">
-        <img src="Clouds_hearts.png" alt="Clouds hearts" class="clouds-hearts">
-        <img src="Walwet_walls_logo.png" alt="Walwet walls logo" class="logo">
+        <img src="assets/images/Clouds_hearts.png" alt="Clouds hearts" class="clouds-hearts">
+        <img src="assets/images/Walwet_walls_logo.png" alt="Walwet walls logo" class="logo">
         <div class="studio-text">СТУДИЯ ДИЗАЙНА</div>
     </header>
 
@@ -189,7 +192,7 @@
                         </p>
                     </div>
                     <div class="about-image">
-                        <img src="Princeses.png" alt="Princeses" class="princeses-image">
+                        <img src="assets/images/Princeses.png" alt="Princeses" class="princeses-image">
                     </div>
                 </div>
             </div>
@@ -207,7 +210,7 @@
                     <div class="service-card">
                         <div class="service-icon">🏢</div>
                         <h3>КОРПОРАТИВНАЯ СИМВОЛИКА</h3>
-                        <p>Нанение на стены и фасады</p>
+                        <p>Нанесение на стены и фасады</p>
                     </div>
                     <div class="service-card">
                         <div class="service-icon">✏️</div>
@@ -225,16 +228,16 @@
                     <button class="carousel-button prev">&lt;</button>
                     <div class="carousel">
                         <div class="carousel-track">
-                            <img src="img/02.JPG" alt="Работа 1">
-                            <img src="img/01.JPG" alt="Работа 2 вертикальная">
-                            <img src="img/04.JPG" alt="Работа 3">
-                            <img src="img/03.JPG" alt="Работа 4 вертикальная">
-                            <img src="img/05.JPG" alt="Работа 5 вертикальная">
-                            <img src="img/06.JPG" alt="Работа 6">
-                            <img src="img/07.JPG" alt="Работа 7 вертикальная">
-                            <img src="img/08.JPG" alt="Работа 8 вертикальная">
-                            <img src="img/09.JPG" alt="Работа 9 ">
-                            <img src="img/10.JPG" alt="Работа 10 вертикальная">
+                            <img src="img/02.JPG" alt="Работа 1" loading="lazy">
+                            <img src="img/01.JPG" alt="Работа 2 вертикальная" loading="lazy">
+                            <img src="img/04.JPG" alt="Работа 3" loading="lazy">
+                            <img src="img/03.JPG" alt="Работа 4 вертикальная" loading="lazy">
+                            <img src="img/05.JPG" alt="Работа 5 вертикальная" loading="lazy">
+                            <img src="img/06.JPG" alt="Работа 6" loading="lazy">
+                            <img src="img/07.JPG" alt="Работа 7 вертикальная" loading="lazy">
+                            <img src="img/08.JPG" alt="Работа 8 вертикальная" loading="lazy">
+                            <img src="img/09.JPG" alt="Работа 9" loading="lazy">
+                            <img src="img/10.JPG" alt="Работа 10 вертикальная" loading="lazy">
                         </div>
                     </div>
                     <button class="carousel-button next">&gt;</button>
@@ -298,44 +301,6 @@
     <button id="scrollToTop" class="scroll-to-top">↑</button>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script>
-    const track = document.querySelector('.carousel-track');
-    const slides = Array.from(track.children);
-    const prevBtn = document.querySelector('.carousel-button.prev');
-    const nextBtn = document.querySelector('.carousel-button.next');
-    const indicators = document.querySelector('.carousel-indicators');
-    let currentIndex = 0;
-
-    // Создание индикаторов
-    slides.forEach((_, idx) => {
-        const dot = document.createElement('div');
-        dot.className = 'dot' + (idx === 0 ? ' active' : '');
-        dot.addEventListener('click', () => goToSlide(idx));
-        indicators.appendChild(dot);
-    });
-
-    function updateCarousel() {
-        track.style.transform = `translateX(-${currentIndex * 100}%)`;
-        indicators.querySelectorAll('.dot').forEach((dot, idx) => {
-            dot.classList.toggle('active', idx === currentIndex);
-        });
-        // Обновление счетчика (если нужно)
-        const progressText = document.querySelector('.progress-text');
-        if(progressText) progressText.textContent = `${currentIndex+1}/${slides.length}`;
-    }
-    function goToSlide(idx) {
-        currentIndex = idx;
-        updateCarousel();
-    }
-    prevBtn.onclick = () => {
-        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-        updateCarousel();
-    };
-    nextBtn.onclick = () => {
-        currentIndex = (currentIndex + 1) % slides.length;
-        updateCarousel();
-    };
-    updateCarousel();
-    </script>
+    <script src="assets/js/script.js"></script>
 </body>
 </html>
