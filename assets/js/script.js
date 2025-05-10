@@ -13,91 +13,124 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function initCarousel() {
-    try {
-        const track = document.querySelector('.carousel-track');
-        const slides = Array.from(track.querySelectorAll('img'));
-        const prevBtn = document.querySelector('.carousel-button.prev');
-        const nextBtn = document.querySelector('.carousel-button.next');
-        const indicators = document.querySelector('.carousel-indicators');
-        let currentIndex = 0;
-
-        if (!track || !slides.length || !prevBtn || !nextBtn || !indicators) {
-            console.error('Не найдены необходимые элементы карусели');
-            return;
-        }
-
-        // Обработка ошибок загрузки изображений
-        slides.forEach(img => {
-            img.onerror = function() {
-                this.src = 'img/placeholder.png';
-                this.alt = 'Изображение не загружено';
-            };
-        });
-
-        // Создание индикаторов
-        slides.forEach((_, idx) => {
-            const dot = document.createElement('div');
-            dot.className = 'dot' + (idx === 0 ? ' active' : '');
-            dot.addEventListener('click', () => goToSlide(idx));
-            indicators.appendChild(dot);
-        });
-
-        function updateCarousel() {
-            track.style.transform = `translateX(-${currentIndex * 100}%)`;
-            indicators.querySelectorAll('.dot').forEach((dot, idx) => {
-                dot.classList.toggle('active', idx === currentIndex);
-            });
-            updateProgress();
-        }
-
-        function updateProgress() {
-            const progressText = document.querySelector('.progress-text');
-            if (progressText) {
-                progressText.textContent = `${currentIndex + 1}/${slides.length}`;
+    const carousel = document.querySelector('.carousel');
+    const track = carousel.querySelector('.carousel-track');
+    const slides = track.querySelectorAll('.carousel-slide');
+    const prevButton = carousel.querySelector('.prev');
+    const nextButton = carousel.querySelector('.next');
+    const indicators = carousel.querySelector('.carousel-indicators');
+    const progressText = carousel.querySelector('.progress-text');
+    
+    let currentIndex = 5;
+    let isAnimating = false;
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    // Создаем индикаторы
+    slides.forEach((_, index) => {
+        const dot = document.createElement('div');
+        dot.classList.add('dot');
+        if (index === currentIndex) dot.classList.add('active');
+        dot.addEventListener('click', () => goToSlide(index));
+        indicators.appendChild(dot);
+    });
+    
+    function updateCarousel() {
+        if (isAnimating) return;
+        isAnimating = true;
+        
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        
+        // Обновляем активные классы с задержкой для плавности
+        slides.forEach((slide, index) => {
+            if (index === currentIndex) {
+                setTimeout(() => {
+                    slide.classList.add('active');
+                }, 50);
+            } else {
+                slide.classList.remove('active');
             }
-        }
-
-        function goToSlide(idx) {
-            if (idx >= 0 && idx < slides.length) {
-                currentIndex = idx;
-                updateCarousel();
-            }
-        }
-
-        // Обработчики событий
-        prevBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-            updateCarousel();
         });
-
-        nextBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex + 1) % slides.length;
-            updateCarousel();
+        
+        // Обновляем индикаторы
+        const dots = indicators.querySelectorAll('.dot');
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentIndex);
         });
-
-        // Клавиатурная навигация
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') prevBtn.click();
-            if (e.key === 'ArrowRight') nextBtn.click();
-        });
-
-        // Автоматическая прокрутка
-        let autoplayInterval = setInterval(() => {
-            nextBtn.click();
-        }, 5000);
-
-        // Остановка автопрокрутки при наведении
-        track.addEventListener('mouseenter', () => clearInterval(autoplayInterval));
-        track.addEventListener('mouseleave', () => {
-            autoplayInterval = setInterval(() => {
-                nextBtn.click();
-            }, 5000);
-        });
-
-        updateCarousel();
-    } catch (error) {
-        console.error('Ошибка при инициализации карусели:', error);
+        
+        // Обновляем прогресс
+        progressText.textContent = `${currentIndex + 1}/${slides.length}`;
+        
+        setTimeout(() => {
+            isAnimating = false;
+        }, 500);
     }
+    
+    function goToSlide(index) {
+        if (index < 0) index = slides.length - 1;
+        if (index >= slides.length) index = 0;
+        currentIndex = index;
+        updateCarousel();
+    }
+    
+    function nextSlide() {
+        if (!isAnimating) {
+            goToSlide(currentIndex + 1);
+        }
+    }
+    
+    function prevSlide() {
+        if (!isAnimating) {
+            goToSlide(currentIndex - 1);
+        }
+    }
+    
+    // Добавляем обработчики событий
+    prevButton.addEventListener('click', prevSlide);
+    nextButton.addEventListener('click', nextSlide);
+    
+    // Добавляем управление с клавиатуры
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') prevSlide();
+        if (e.key === 'ArrowRight') nextSlide();
+    });
+    
+    // Добавляем поддержку свайпов
+    carousel.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+    });
+    
+    carousel.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].clientX;
+        handleSwipe();
+    });
+    
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const diff = touchStartX - touchEndX;
+        
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+                nextSlide();
+            } else {
+                prevSlide();
+            }
+        }
+    }
+    
+    // Автопрокрутка с паузой при наведении
+    let autoplayInterval = setInterval(nextSlide, 5000);
+    
+    carousel.addEventListener('mouseenter', () => {
+        clearInterval(autoplayInterval);
+    });
+    
+    carousel.addEventListener('mouseleave', () => {
+        autoplayInterval = setInterval(nextSlide, 5000);
+    });
+    
+    // Инициализация
+    updateCarousel();
 }
 
 function initAOS() {
